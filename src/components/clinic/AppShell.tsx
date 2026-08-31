@@ -24,7 +24,15 @@ const nav = [
   { to: "/reminders", label: "Reminders", icon: MessageCircle },
 ] as const;
 
-export function AppShell({ children }: { children: ReactNode }) {
+export function AppShell({
+  children,
+  title,
+  subtitle,
+}: {
+  children: ReactNode;
+  title?: string;
+  subtitle?: string;
+}) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const pathname = useRouterState({ select: (s) => s.location.pathname });

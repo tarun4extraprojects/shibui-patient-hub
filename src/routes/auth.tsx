@@ -127,9 +127,47 @@ function AuthPage() {
             {error && <p className="text-sm font-medium text-destructive">{error}</p>}
 
             <Button type="submit" size="lg" className="h-12 w-full text-base" disabled={loading}>
-              {loading ? "Signing in…" : "Login"}
+              {loading
+                ? mode === "signup"
+                  ? "Creating account…"
+                  : "Signing in…"
+                : mode === "signup"
+                  ? "Create staff account"
+                  : "Login"}
             </Button>
           </form>
+
+          <p className="mt-4 text-center text-sm text-muted-foreground">
+            {mode === "signin" ? (
+              <>
+                First time here?{" "}
+                <button
+                  type="button"
+                  className="font-semibold text-foreground underline-offset-4 hover:underline"
+                  onClick={() => {
+                    setMode("signup");
+                    setError(null);
+                  }}
+                >
+                  Create a staff account
+                </button>
+              </>
+            ) : (
+              <>
+                Already have an account?{" "}
+                <button
+                  type="button"
+                  className="font-semibold text-foreground underline-offset-4 hover:underline"
+                  onClick={() => {
+                    setMode("signin");
+                    setError(null);
+                  }}
+                >
+                  Sign in
+                </button>
+              </>
+            )}
+          </p>
 
           <div className="gold-rule my-6" />
 

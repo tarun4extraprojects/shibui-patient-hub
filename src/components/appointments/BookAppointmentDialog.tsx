@@ -35,7 +35,7 @@ export function BookAppointmentDialog({
 }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [reason, setReason] = useState(clinic.reasonTypes[0]);
+  const [reason, setReason] = useState<string>(clinic.reasonTypes[0]);
   const [dateISO, setDateISO] = useState(defaultDate ?? toISODate(new Date()));
   const [slot, setSlot] = useState("");
   const [notes, setNotes] = useState("");

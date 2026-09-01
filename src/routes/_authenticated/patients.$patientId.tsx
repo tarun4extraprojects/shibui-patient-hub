@@ -91,12 +91,12 @@ function PatientDetailPage() {
               </Link>
             </Button>
           </div>
-          {patient.medical_notes && (
+          {patient.notes && (
             <>
               <div className="gold-rule my-4" />
               <p className="text-sm">
                 <span className="font-medium">Medical notes: </span>
-                {patient.medical_notes}
+                {patient.notes}
               </p>
             </>
           )}
@@ -164,7 +164,7 @@ function PatientDetailPage() {
                   <div>
                     <p className="text-sm font-medium">{formatDateLong(a.appointment_date)}</p>
                     <p className="text-xs text-muted-foreground">
-                      {formatSlot(a.slot)} · {a.reason || "Consultation"}
+                      {formatSlot(a.slot_time)} · {a.reason || "Consultation"}
                     </p>
                   </div>
                   <StatusBadge status={a.status} />

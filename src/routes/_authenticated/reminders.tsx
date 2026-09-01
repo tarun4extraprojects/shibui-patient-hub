@@ -38,7 +38,7 @@ function RemindersPage() {
   const { data: status } = useWhatsAppStatus();
   const send = useSendReminder();
 
-  const pending = reminders?.filter((r) => r.status === "pending").length ?? 0;
+  const pending = reminders?.filter((r) => r.status === "scheduled").length ?? 0;
   const sent = reminders?.filter((r) => r.status === "sent").length ?? 0;
   const failed = reminders?.filter((r) => r.status === "failed").length ?? 0;
 

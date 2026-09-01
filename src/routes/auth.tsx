@@ -34,6 +34,7 @@ function AuthPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [mode, setMode] = useState<"signin" | "signup">("signin");
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -47,6 +48,20 @@ function AuthPage() {
     if (!email.trim()) return setError("Please enter your email address.");
     if (!password) return setError("Please enter your password.");
     setLoading(true);
+    if (mode === "signup") {
+      const { error: signUpError } = await supabase.auth.signUp({
+        email: email.trim(),
+        password,
+      });
+      setLoading(false);
+      if (signUpError) {
+        setError(signUpError.message);
+        return;
+      }
+      // Auto-confirm is enabled, so a session is returned immediately.
+      navigate({ to: "/dashboard", replace: true });
+      return;
+    }
     const { error: signInError } = await supabase.auth.signInWithPassword({
       email: email.trim(),
       password,
